@@ -117,8 +117,8 @@ io.on("connection",(socket)=>{
 	  io.sockets.in(rooms[socket.id]).emit("chat message",msg);
 
 	  // *********************
-	  // var new_chat_group = new Chat({_id:rooms[socket.id],messages:{username:"Computer",message:msg}});
-   //  		new_chat_group.save()
+	  var new_chat_group = new Chat({_id:rooms[socket.id],messages:{username:"Computer",message:msg}});
+    		new_chat_group.save()
 	  	// Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user}}},{new:true},function(err,chat_group){
 
 	  	// 	if (err)
