@@ -85,6 +85,15 @@ app.get('/getmsg/:room',function(req,res){
     });
 });
 
+app.get('/getmsg/:room/:id',function(req,res){
+  Chat.find({_id:req.params.room,messages:{message:req.params.id}},function(err,chat_message){
+    if(err)
+      res.send(err);
+    res.json(chat_message);
+
+  });
+});
+
 app.post('/', function(req, res){
     room = req.body.room;
     console.log("recieved");
