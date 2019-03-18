@@ -141,8 +141,11 @@ io.on("connection",(socket)=>{
 	  // var new_chat_group = new Chat({_id:rooms[socket.id],messages:{username:"Computer",message:"hi"}});
    //  		new_chat_group.save()
 	  	Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user}}},{new:true},function(err,chat_group){
-
-          var payload = {
+	  		if (err)
+        	console.log(err);
+      		// res.json(chat_group);
+        });
+      var payload = {
                 notification: {
                     title: rooms[socket.id],
                     body: msg,
@@ -170,13 +173,6 @@ admin.messaging().send(payload)
   .catch((error) => {
     console.log('Error sending message:', error);
   });
-
-
-	  		if (err)
-        	console.log(err);
-      		// res.json(chat_group);
-
-	  	});
   });
 
   });
