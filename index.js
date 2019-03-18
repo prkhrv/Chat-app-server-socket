@@ -8,6 +8,18 @@ var mongoose = require('mongoose');
 var path = require('path'); 
 const axios = require('axios');
 
+
+// Notification Code
+var admin = require("firebase-admin");
+var registrationToken = "eeFp-yuOXgE:APA91bHedgxaKY4-UedU8O-XXwoRqeYnHg2cQGSUvYb39rQ3zNg7yxI2AyvPP6awpmXFg4jQVM-L4ff1EfS3hnb6SvwgKa1km-a7hIzRHQWK5vZOscaQX1kuHgQw1w3_uiNtllTqJusH";
+var serviceAccount = require("./key/serviceKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://mychatapp-66037.firebaseio.com"
+});
+
+
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 const dbConfig = require('./config/database.config.js');
@@ -129,6 +141,36 @@ io.on("connection",(socket)=>{
 	  // var new_chat_group = new Chat({_id:rooms[socket.id],messages:{username:"Computer",message:"hi"}});
    //  		new_chat_group.save()
 	  	Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user}}},{new:true},function(err,chat_group){
+
+          var payload = {
+                notification: {
+                    title: rooms[socket.id],
+                    body: msg,
+                  },
+                  topic: rooms[socket.id],
+              };
+
+          var options = {
+                priority: "High",
+                importance: "Max",
+                sound:"Enabled",
+                timeToLive: 60 * 60 *24,
+            };
+
+
+
+
+// Send a message to the device corresponding to the provided
+// registration token.
+admin.messaging().send(payload)
+  .then((response) => {
+    // Response is a message ID string.
+    console.log('Successfully sent message:', response);
+  })
+  .catch((error) => {
+    console.log('Error sending message:', error);
+  });
+
 
 	  		if (err)
         	console.log(err);
