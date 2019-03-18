@@ -148,7 +148,7 @@ io.on("connection",(socket)=>{
       var payload = {
                 notification: {
                     title: "You have a new message",
-                    body: "message",
+                    body: msg.message,
                   },
                   topic: rooms[socket.id],
               };
