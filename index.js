@@ -114,6 +114,13 @@ app.post('/', function(req, res){
     res.json({ ON: room });
 });
 
+app.get('/mobile/:room',function(req,res){
+
+	room = req.params.room;
+	res.json({ON: room});
+
+});
+
 var users = 0;
 io.on("connection",(socket)=>{
 
