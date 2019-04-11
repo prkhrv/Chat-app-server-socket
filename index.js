@@ -121,7 +121,29 @@ app.get('/mobile/:room',function(req,res){
 });
 
 app.post('/app/send/notification',function(req,res){
-	
+
+	var payload = {
+  notification: {
+    title: "Account Deposit",
+    body: "A deposit to your savings account has just cleared.",
+  },
+  token: req.body.user_token,
+};
+
+
+
+
+// Send a message to the device corresponding to the provided
+// registration token.
+admin.messaging().send(payload)
+  .then((response) => {
+    // Response is a message ID string.
+    console.log('Successfully sent message:', response);
+  })
+  .catch((error) => {
+    console.log('Error sending message:', error);
+  });
+
 
 });
 
