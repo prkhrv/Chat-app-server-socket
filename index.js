@@ -121,38 +121,6 @@ app.get('/mobile/:room',function(req,res){
 
 });
 
-
-app.post('/mobile/notification', function(req,res){
-
-  res.json({notification: sent});
-
-
-//   var payload = {
-//   notification: {
-//     title: "TravelKit",
-//     body: "Your Request has been Accepted",
-//   },
-//   token: req.body.user_token,
-// };
-
-
-
-
-// // Send a message to the device corresponding to the provided
-// // registration token.
-// admin.messaging().send(payload)
-//   .then((response) => {
-//     // Response is a message ID string.
-//     console.log('Successfully sent message:', response);
-//   })
-//   .catch((error) => {
-//     console.log('Error sending message:', error);
-//   });
-
-//   res.json({notification: sent});
-
-});
-
 var users = 0;
 io.on("connection",(socket)=>{
 
