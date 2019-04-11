@@ -124,8 +124,8 @@ app.post('/app/send/notification',function(req,res){
 
 	var payload = {
   notification: {
-    title: "Account Deposit",
-    body: "A deposit to your savings account has just cleared.",
+    title: "TravelKit",
+    body: "Your Request has been Accepted",
   },
   token: req.body.user_token,
 };
