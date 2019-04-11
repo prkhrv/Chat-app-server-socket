@@ -118,6 +118,11 @@ app.get('/mobile/:room',function(req,res){
 
 	room = req.params.room;
 	res.json({ON: room});
+});
+
+app.post('/mobile/send/notification',function(req,res){
+
+	res.json({ON: room});
 
 });
 
