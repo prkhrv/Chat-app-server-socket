@@ -144,6 +144,8 @@ admin.messaging().send(payload)
     console.log('Error sending message:', error);
   });
 
+  res.json({notification: sent});
+
 });
 
 var users = 0;
