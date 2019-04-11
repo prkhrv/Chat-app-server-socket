@@ -121,7 +121,7 @@ app.get('/mobile/:room',function(req,res){
 
 });
 
-app.post('/mobile/notification',function(req,res){
+app.post('/mobile/notification', cors(), function(req,res){
   var payload = {
   notification: {
     title: "TravelKit",
