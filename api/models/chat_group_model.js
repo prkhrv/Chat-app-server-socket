@@ -22,6 +22,9 @@ var ChatSchema = new Schema({
     		default:Date.now,
 
     	},
+    	read_by: [{
+    		type: String,
+    	}],
     }]
 
   
