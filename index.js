@@ -174,21 +174,18 @@ io.on("connection",(socket)=>{
 	  // *********************
 	  // var new_chat_group = new Chat({_id:rooms[socket.id],messages:{username:"Computer",message:"Welcome To This New Room"}});
    //  		new_chat_group.save()
-   		if(users == 1){
-	  	Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user}}},{new:true},function(err,chat_group){
-	  		if (err)
-        	console.log(err);
-      		// res.json(chat_group);
-        });
-	  }
-	  	else{
+   // 		if(users == 1){
+	  // 	Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user}}},{new:true},function(err,chat_group){
+	  // 		if (err)
+   //      	console.log(err);
+   //    		// res.json(chat_group);
+   //      });
+	  // }
 	  		Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user,$push:{read_by:users}}}},{new:true},function(err,chat_group){
 	  		if (err)
         	console.log(err);
       		// res.json(chat_group);
         });
-
-	  	}
 
       var payload = {
                 notification: {
