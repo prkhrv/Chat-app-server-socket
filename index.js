@@ -170,6 +170,7 @@ io.on("connection",(socket)=>{
       console.log("you can now send messages");
       console.log(msg);
 	  io.sockets.in(rooms[socket.id]).emit("chat message",msg);
+    io.sockets.in(rooms[socket.id]).emit("read_by",users);
 
 	  // *********************
 	  // var new_chat_group = new Chat({_id:rooms[socket.id],messages:{username:"Computer",message:"Welcome To This New Room"}});
