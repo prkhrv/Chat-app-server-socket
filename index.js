@@ -181,7 +181,7 @@ io.on("connection",(socket)=>{
    //    		// res.json(chat_group);
    //      });
 	  // }
-	  		Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user}}},{new:true},function(err,chat_group){
+	  		Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user,read_by:["test"]}}},{new:true},function(err,chat_group){
 	  		if (err)
         	console.log(err);
       		// res.json(chat_group);
