@@ -169,8 +169,9 @@ io.on("connection",(socket)=>{
     socket.on("chat message",(msg)=>{
       console.log("you can now send messages");
       console.log(msg);
+    io.sockets.in(rooms[socket.id]).emit("read_by",users);  
 	  io.sockets.in(rooms[socket.id]).emit("chat message",msg);
-    io.sockets.in(rooms[socket.id]).emit("read_by",users);
+    
 
 	 
 	  		Chat.findOneAndUpdate({_id:rooms[socket.id]},{$push: {messages:{message:msg.message,username:msg.user,read_by:[users]}}},{new:true},function(err,chat_group){
