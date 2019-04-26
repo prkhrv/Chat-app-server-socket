@@ -148,7 +148,7 @@ admin.messaging().send(payload)
 });
 
 
-var users = {};
+var users = 0;
 io.on("connection",(socket)=>{
 
 	users++;
