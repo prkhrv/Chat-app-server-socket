@@ -23,7 +23,7 @@ var ChatSchema = new Schema({
 
     	},
     	read_by: [{
-    		type: String,
+    		type: Number,
     	}],
     }]
 
