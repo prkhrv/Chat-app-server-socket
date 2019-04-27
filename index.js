@@ -97,6 +97,16 @@ app.get('/getmsg/:room',function(req,res){
     });
 });
 
+app.delete('/getmsg/:room',function(req,res){
+  Chat.deleteOne({
+      _id: req.params.room
+    }, function(err, chat_group) {
+      if (err)
+        res.send(err);
+      res.json({ message: 'chat_group successfully deleted' });
+    });
+})
+
 app.get('/getmsg/:room/:id',function(req,res){
   Chat.find({_id:req.params.room,messages:{_id:req.params.id}},function(err,chat_message){
     if(err)
